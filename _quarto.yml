@@ -1,0 +1,53 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Tim Wen - MUSA 5080 Portfolio"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Weekly Notes 
+        menu:
+          - href: notes/week-01-notes.qmd
+            text: Week 1
+          - href: notes/week-02-notes1.qmd
+            text: Week 2
+          - href: notes/week-03-notes1.qmd
+            text: Week 3
+          - href: notes/week-04-notes.qmd
+            text: Week 4
+          - href: notes/week-05-notes.qmd
+            text: Week 5
+          - href: notes/week-06-notes.qmd
+            text: Week 6
+          - href: notes/week-07-notes.qmd
+            text: Week 7
+      - text: Labs
+        menu:
+          - href: labs/lab 0/scripts/lab0_template.qmd
+            text: Lab 0
+      - text: Assignments
+        menu:
+          - href: Assignemnt/assignment1_tim.qmd 
+            text: Assignment 1
+          - href: Assignemnt/assignment2_tim.qmd
+            text: Assignment 2
+          - href: Assignemnt/Tim_Wen_appendix.qmd
+            text: Mid Term
+      - text: mid term slides  
+        menu:
+          - href: presentation/presentation.qmd
+            text: Presentation
+
+            
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+
+execute:
+  freeze: auto
+
