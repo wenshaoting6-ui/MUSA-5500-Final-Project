@@ -8,6 +8,130 @@ execute:
   echo: false
   warning: false
 ---
+### General Results: Location of SNAP retailers and Food Store
+```{python}
+#| label: fig-retailers-map
+#| title: "Interactive Map of SNAP Retailers & Food Stores"
+! pip install PyYMAL
+import pandas as pd
+import geopandas as gpd
+import plotly.express as px
+import plotly.graph_objects as go
+import osmnx as ox
+import numpy as np
+
+# --- 1. PREPARE POINT DATA ---
+
+# Load and Clean SNAP Data
+snap_path = "../data/Historical SNAP Retailer Locator Data 2004-2024.csv"
+try:
+    snap = pd.read_csv(snap_path, encoding='utf-8', encoding_errors='replace')
+    philly_snap = snap[
+        (snap['County'] == 'PHILADELPHIA') & 
+        (snap['End Date'].isna())
+    ].copy()
+    
+    # Drop rows with missing coordinates
+    philly_snap = philly_snap.dropna(subset=['Latitude', 'Longitude'])
+    
+except Exception as e:
+    print(f"Could not load SNAP data: {e}")
+    philly_snap = pd.DataFrame()
+
+# Fetch POI Data (Food Stores) from OSM
+try:
+    food_stores = ox.features_from_place(
+        "Philadelphia, PA", 
+        tags={"shop": ["food", "supermarket", "grocery"]}
+    )
+    # Convert to centroids if polygons
+    food_stores['geometry'] = food_stores.geometry.centroid
+    food_stores['lat'] = food_stores.geometry.y
+    food_stores['lon'] = food_stores.geometry.x
+    
+    # Drop rows with missing coordinates
+    food_stores = food_stores.dropna(subset=['lat', 'lon'])
+    
+except Exception as e:
+    print(f"Could not fetch OSM data: {e}")
+    food_stores = pd.DataFrame()
+
+# --- 2. PREPARE DENSITY DATA ---
+
+all_lats = []
+all_lons = []
+
+if not philly_snap.empty:
+    all_lats.extend(philly_snap['Latitude'].tolist())
+    all_lons.extend(philly_snap['Longitude'].tolist())
+
+if not food_stores.empty:
+    all_lats.extend(food_stores['lat'].tolist())
+    all_lons.extend(food_stores['lon'].tolist())
+
+# Create a weight list (1 for every point)
+all_weights = [1] * len(all_lats)
+
+# Debug: Check if we have data
+print(f"Plotting density for {len(all_lats)} total points.")
+
+# --- 3. CREATE MAP ---
+
+fig_points = go.Figure()
+
+# Layer 1: Density Heatmap (Kernel Density Surface)
+# We add this FIRST so it sits at the bottom, but points are drawn on top.
+if len(all_lats) > 0:
+    fig_points.add_trace(go.Densitymapbox(
+        lat=all_lats,
+        lon=all_lons,
+        z=all_weights,        # Explicitly weight every point as 1
+        radius=10,            # Increased radius for better visibility
+        colorscale='Hot', 
+        opacity=0.5,
+        name='Density Heatmap',
+        visible=True          # SHOW BY DEFAULT
+    ))
+
+# Layer 2: SNAP Retailers
+if not philly_snap.empty:
+    fig_points.add_trace(go.Scattermapbox(
+        lat=philly_snap['Latitude'],
+        lon=philly_snap['Longitude'],
+        mode='markers',
+        marker=go.scattermapbox.Marker(size=5, color='blue', opacity=0.8),
+        text=philly_snap['Store Name'],
+        name='SNAP Retailers'
+    ))
+
+# Layer 3: Food Stores (POI)
+if not food_stores.empty:
+    fig_points.add_trace(go.Scattermapbox(
+        lat=food_stores['lat'],
+        lon=food_stores['lon'],
+        mode='markers',
+        marker=go.scattermapbox.Marker(size=5, color='green', opacity=0.8),
+        text=food_stores['name'],
+        name='Food Stores (OSM)'
+    ))
+
+fig_points.update_layout(
+    mapbox_style="carto-positron",
+    mapbox_zoom=10,
+    mapbox_center={"lat": 39.9526, "lon": -75.1652},
+    margin={"r":0,"t":40,"l":0,"b":0},
+    legend=dict(
+        yanchor="top", 
+        y=0.99, 
+        xanchor="left", 
+        x=0.01, 
+        bgcolor="rgba(255,255,255,0.9)"
+    ),
+    title="Retailer Locations & Density Heatmap"
+)
+
+fig_points.show()
+```
 
 ```{python}
 #| label: setup
