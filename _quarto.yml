@@ -20,7 +20,6 @@ website:
             text: Results
           - href: final_project/conclusion.qmd
             text: Conclusion
-      - text: Weekly Notes 
 
 format:
   html:
