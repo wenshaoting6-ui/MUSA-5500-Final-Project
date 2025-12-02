@@ -1,0 +1,30 @@
+---
+title: "Data Sources"
+format: html
+---
+
+This analysis integrates data from four primary sources to construct a multidimensional view of food access.
+
+### 1. USDA Food Access Research Atlas
+* **Description:** Provides tract-level data on food access indicators, including low-income and low-access status.
+* **Use:** Used as a baseline for comparison against our custom index.
+* **Source:** [USDA ERS](https://www.ers.usda.gov/data-products/food-access-research-atlas/)
+
+### 2. US Census Bureau (ACS 2023 5-Year Estimates)
+* **Description:** Demographic and economic data at the Census Tract level.
+* **Key Variables:**
+    * **Poverty Rate:** Percentage of families below the poverty line.
+    * **Median Household Income:** Measure of neighborhood wealth.
+    * **Vehicle Availability:** Households without access to a vehicle (`HUNV`).
+    * **Demographics:** Percentage of Black and Hispanic residents.
+    * **SNAP Participation:** Households receiving food stamps.
+
+### 3. SNAP Retailer Locator
+* **Description:** A historical dataset of authorized SNAP retailers.
+* **Filtering:** Filtered to include only active retailers in Philadelphia County as of 2024.
+* **Use:** Identifies locations where food assistance benefits can be used.
+
+### 4. OpenStreetMap (OSM)
+* **Description:** Geospatial data on points of interest.
+* **Filtering:** Extracted nodes/ways tagged as `supermarket`, `grocery`, or `convenience`.
+* **Use:** Calculated precise walking and driving network distances from every 50m grid cell to the nearest food source.

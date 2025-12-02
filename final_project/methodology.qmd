@@ -1,0 +1,30 @@
+---
+title: "Methodology"
+format: html
+---
+
+To measure food insecurity accurately, we moved away from census tracts as the smallest unit and utilized a **50-meter resolution grid** analysis.
+
+### 1. Spatial Analysis
+We created a 50m x 50m grid covering the entire city of Philadelphia (approx. 1.5 million cells). For every single cell, we calculated:
+* **Network Distance:** The walking/driving distance to the nearest supermarket.
+* **SNAP Distance:** The network distance to the nearest SNAP-accepting retailer.
+
+### 2. The Composite Index
+We developed a composite **Food Desert Index (0-100)** where higher scores indicate higher risk. The index is a weighted sum of four components:
+
+$$
+\text{Index} = 0.30(\text{Access}) + 0.35(\text{Economic}) + 0.25(\text{Transport}) + 0.10(\text{Demographic})
+$$
+
+| Component | Weight | Indicators |
+|-----------|--------|------------|
+| **Physical Accessibility** | 30% | Distance to food stores, Distance to SNAP retailers |
+| **Economic Vulnerability** | 35% | Poverty rate, Unemployment rate, Median Income, SNAP usage |
+| **Transportation Barriers** | 25% | Households without vehicles (`HUNVFlag`), Distance combined with lack of car |
+| **Demographic Disparities** | 10% | % Minority population (Black + Hispanic) |
+
+### 3. Categorization
+* **High Risk:** Index Score > 50
+* **Moderate Risk:** Index Score 30 - 50
+* **Low Risk:** Index Score < 30

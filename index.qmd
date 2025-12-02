@@ -1,22 +1,30 @@
 ---
-title: "MUSA 5080 Portfolio"
+title: "MUSA 5050 Final Project"
 ---
 
-# Welcome to My Portfolio
+### Philadelphia Food Desert Analysis
 
-This portfolio documents my learning journey in Public Policy Analytics (MUSA 5080).
+## Beyond Proximity: A Multidimensional Risk Index
 
-## About This Course
-Advanced spatial analysis and data science for urban planning and public policy.
+{width=80%}
 
-## Portfolio Structure
-- **Weekly Notes:** My learning reflections and key concepts
-- **Labs:** Completed assignments and analyses
-- **Final Project:** Capstone modeling challenge
+## Executive Summary
 
-## About Me
-My name is Tim Wen. I am a dual MCP&MUSA student. I am from Suzhou, China. I am taking this course because I want to practice both my statistical and coding skills.  
+Access to nutritious food is not just about miles; it is about mobility, money, and systemic equity. This project challenges the traditional binary definition of "food deserts" (Low Income + Low Access) by developing a continuous, 50-meter resolution Food Desert Index for Philadelphia.
 
-## Contact
-- Email: [sw6as@upenn.edu]
-- GitHub: [wenshaoting6-ui]
+By integrating data from the USDA, Census Bureau, and OpenStreetMap, we identify "hidden" pockets of vulnerability that standard metrics miss—specifically neighborhoods where low vehicle ownership intersects with moderate distances to food sources.
+
+## The Challenge
+
+Philadelphia has a poverty rate of over 20%, significantly higher than the national average. While many neighborhoods are geometrically close to corner stores or supermarkets, the quality of that access varies dramatically.
+
+# The Question: Where are the hardest-to-reach areas for fresh food when accounting for economic and transportation barriers?
+
+# The Approach: A weighted composite index analysis using a fine-grained 50m grid.
+
+## Key Indicators
+Our comprehensive index (0-100 score) is built on four pillars:
+1. Physical Accessibility (30%): Network distance to fresh food.
+2. Economic Vulnerability (35%): Poverty, unemployment, and income.
+3. Transportation Barriers (25%): Vehicle ownership and transit reliance.
+4. Demographic Disparities (10%): Systemic racial and ethnic inequities.

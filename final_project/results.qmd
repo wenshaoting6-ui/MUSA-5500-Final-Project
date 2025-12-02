@@ -1,0 +1,99 @@
+---
+title: "Results"
+format: 
+  html:
+    page-layout: full
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+---
+
+```{python}
+#| label: setup
+import geopandas as gpd
+import pandas as pd
+import plotly.express as px
+
+# LOAD DATA
+# Note the '..' to go up one level from the final_project folder to the outputs folder
+try:
+    tracts = gpd.read_file("../outputs/tract_summary.geojson")
+    if tracts.crs != 'EPSG:4326':
+        tracts = tracts.to_crs(epsg=4326)
+except Exception as e:
+    print("Error: Could not load data. Ensure 'outputs/tract_summary.geojson' exists.")
+```
+
+### Interactive Food Desert Map
+The map below displays the final Food Desert Index
+<span style="color: #800026; font-weight: bold;">Dark Red</span> areas indicate High Risk.
+#| label: fig-index-map
+#| title: "Food Desert Index by Census Tract"
+
+```{python}
+fig = px.choropleth_mapbox(
+    tracts,
+    geojson=tracts.geometry,
+    locations=tracts.index,
+    color="food_desert_index",
+    color_continuous_scale="RdYlGn_r", 
+    range_color=(20, 65),
+    mapbox_style="carto-positron",
+    zoom=10,
+    center = {"lat": 39.9526, "lon": -75.1652},
+    opacity=0.7,
+    labels={'food_desert_index': 'Risk Score'},
+    hover_data=["tract", "poverty_rate", "accessibility_score"]
+)
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig.show()
+```
+
+### USDA Comparsion
+Comparing our continuous index (Left) vs. the USDA's binary definition (Right).
+
+::: {.panel-tabset}
+
+# USDA Definition
+Areas classified as Low Income & Low Access by the USDA.
+
+```{python}
+#| label: fig-usda-map
+
+tracts['usda_label'] = tracts['usda_food_desert'].map({1: 'Food Desert', 0: 'Not Food Desert'})
+
+fig2 = px.choropleth_mapbox(
+    tracts,
+    geojson=tracts.geometry,
+    locations=tracts.index,
+    color="usda_label",
+    color_discrete_map={'Food Desert': '#FF4136', 'Not Food Desert': '#DDDDDD'},
+    mapbox_style="carto-positron",
+    zoom=10,
+    center = {"lat": 39.9526, "lon": -75.1652},
+    opacity=0.6
+)
+fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig2.show()
+```
+
+# Risk Drivers
+The correlation between poverty and the Food Desert Index.
+
+```{python}
+#| label: fig-scatter
+
+fig3 = px.scatter(
+    tracts, 
+    x="poverty_rate", 
+    y="food_desert_index",
+    color="transportation_barrier",
+    size="accessibility_score",
+    hover_name="tract",
+    labels={"poverty_rate": "Poverty Rate (%)", "food_desert_index": "Risk Index"},
+    template="plotly_white"
+)
+fig3.show()
+```
+

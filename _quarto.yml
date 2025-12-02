@@ -3,45 +3,25 @@ project:
   output-dir: docs
 
 website:
-  title: "Tim Wen - MUSA 5080 Portfolio"
+  title: "Tim Wen Lingxuan Gao Final Project"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - text: Final Project
+        menu:
+          - href: final_project/intro.qmd
+            text: Introduction
+          - href: final_project/data.qmd
+            text: Data
+          - href: final_project/methodology.qmd
+            text: Methodology
+          - href: final_project/results.qmd
+            text: Results
+          - href: final_project/conclusion.qmd
+            text: Conclusion
       - text: Weekly Notes 
-        menu:
-          - href: notes/week-01-notes.qmd
-            text: Week 1
-          - href: notes/week-02-notes1.qmd
-            text: Week 2
-          - href: notes/week-03-notes1.qmd
-            text: Week 3
-          - href: notes/week-04-notes.qmd
-            text: Week 4
-          - href: notes/week-05-notes.qmd
-            text: Week 5
-          - href: notes/week-06-notes.qmd
-            text: Week 6
-          - href: notes/week-07-notes.qmd
-            text: Week 7
-      - text: Labs
-        menu:
-          - href: labs/lab 0/scripts/lab0_template.qmd
-            text: Lab 0
-      - text: Assignments
-        menu:
-          - href: Assignemnt/assignment1_tim.qmd 
-            text: Assignment 1
-          - href: Assignemnt/assignment2_tim.qmd
-            text: Assignment 2
-          - href: Assignemnt/Tim_Wen_appendix.qmd
-            text: Mid Term
-      - text: mid term slides  
-        menu:
-          - href: presentation/presentation.qmd
-            text: Presentation
 
-            
 format:
   html:
     theme: cosmo
@@ -50,4 +30,3 @@ format:
 
 execute:
   freeze: auto
-
