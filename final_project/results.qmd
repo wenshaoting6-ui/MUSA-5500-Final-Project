@@ -9,10 +9,11 @@ execute:
   warning: false
 ---
 ### General Results: Location of SNAP retailers and Food Store
+The first map shows the spatial distribution and density of SNAP retailers and food stores. The number of SNAP retailers is far more than that of food stores, highly due to the incomplete data caused by OSM data. The density is high in center Philly and West Philly, and very low in north especially far north east of Philadelphia, implying an uneven spatial distribution of food access. 
+
 ```{python}
 #| label: fig-retailers-map
 #| title: "Interactive Map of SNAP Retailers & Food Stores"
-! pip install PyYMAL
 import pandas as pd
 import geopandas as gpd
 import plotly.express as px
@@ -150,12 +151,12 @@ except Exception as e:
 ```
 
 ### Interactive Food Desert Map
-The map below displays the final Food Desert Index
+The map below displays the final Food Desert Index. Different from food access density map, West and North Philadelphia had higher risk score. While far north east of Philadelphia, with extreme low economic vulnerability and transportation barrier, have the ability to either order food online or drive to buy fresh food. This shows the advantage of our approach, as we analyze and identify from muti-perspectives. 
 <span style="color: #800026; font-weight: bold;">Dark Red</span> areas indicate High Risk.
-#| label: fig-index-map
-#| title: "Food Desert Index by Census Tract"
 
 ```{python}
+#| label: fig-index-map
+#| title: "Food Desert Index by Census Tract"
 fig = px.choropleth_mapbox(
     tracts,
     geojson=tracts.geometry,
@@ -168,7 +169,7 @@ fig = px.choropleth_mapbox(
     center = {"lat": 39.9526, "lon": -75.1652},
     opacity=0.7,
     labels={'food_desert_index': 'Risk Score'},
-    hover_data=["tract", "poverty_rate", "accessibility_score"]
+    hover_data=["tract", 'economic_vulnerability', "accessibility_score",'transportation_barrier', 'minority_score']
 )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()

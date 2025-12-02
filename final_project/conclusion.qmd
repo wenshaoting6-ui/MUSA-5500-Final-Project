@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Conclusion & Discussion"
 format: html

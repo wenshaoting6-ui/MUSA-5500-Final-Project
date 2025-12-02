@@ -3,15 +3,20 @@ title: "Introduction"
 format: html
 ---
 
-Access to nutritious and affordable food is a fundamental determinant of public health. In urban environments, "food deserts"—areas with limited access to affordable and nutritious food—disproportionately affect low-income and minority communities.
+A food desert is an area/neighborhood with restricted access to affordable, healthy food, such as fresh fruits and vegetables. This is highly due to the limited numbers of grocery stores. These areas are correlated spatially with low-income urban and rural neighborhoods. Residents in food deserts are forced to switch to convenience stores or fast-food restaurants, causing potential serious health concerns and trapping them in the poverty cycle. As a result, it is important for the government to identify potential food deserts.   
 
-This project analyzes the food security landscape in Philadelphia, moving beyond simple proximity measures to a comprehensive **Food Desert Index**. 
+However, so far limited research has been done in the City of Philadelphia to identify food deserts. Especially after the pandemic, with the closure of a number of small businesses, more neighborhoods are likely to become food deserts 
 
-### The Problem
+This project aims to use different spatial data and spatial analysis techniques to identify the neighborhoods under the potential threat of food deserts.   
+
 Traditional definitions of food deserts often rely on binary classifications (e.g., "further than 1 mile"). This project argues that food insecurity is a continuous gradient influenced by:
+
 1.  **Physical Distance:** How far is the store?
+
 2.  **Economic Access:** Can residents afford the food?
+
 3.  **Transportation:** Can residents get to the store?
+
 4.  **Systemic Barriers:** Are there racial or historical disparities?
 
 This portfolio explores these dimensions to identify Philadelphia's most vulnerable neighborhoods.

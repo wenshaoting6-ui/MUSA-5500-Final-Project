@@ -141,7 +141,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#usda-food-access-research-atlas" id="toc-usda-food-access-research-atlas" class="nav-link active" data-scroll-target="#usda-food-access-research-atlas">1. USDA Food Access Research Atlas</a></li>
   <li><a href="#us-census-bureau-acs-2023-5-year-estimates" id="toc-us-census-bureau-acs-2023-5-year-estimates" class="nav-link" data-scroll-target="#us-census-bureau-acs-2023-5-year-estimates">2. US Census Bureau (ACS 2023 5-Year Estimates)</a></li>
   <li><a href="#snap-retailer-locator" id="toc-snap-retailer-locator" class="nav-link" data-scroll-target="#snap-retailer-locator">3. SNAP Retailer Locator</a></li>
-  <li><a href="#openstreetmap-osm" id="toc-openstreetmap-osm" class="nav-link" data-scroll-target="#openstreetmap-osm">4. OpenStreetMap (OSM)</a></li>
+  <li><a href="#openstreetmap-osm-points-of-interest" id="toc-openstreetmap-osm-points-of-interest" class="nav-link" data-scroll-target="#openstreetmap-osm-points-of-interest">4. OpenStreetMap (OSM) Points of Interest</a></li>
+  <li><a href="#openstreetmap-osm-roads" id="toc-openstreetmap-osm-roads" class="nav-link" data-scroll-target="#openstreetmap-osm-roads">5. OpenStreetMap (OSM) Roads</a></li>
   </ul>
 </nav>
     </div>
@@ -195,14 +196,22 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Description:</strong> A historical dataset of authorized SNAP retailers.</li>
 <li><strong>Filtering:</strong> Filtered to include only active retailers in Philadelphia County as of 2024.</li>
-<li><strong>Use:</strong> Identifies locations where food assistance benefits can be used.</li>
+<li><strong>Use:</strong> Identifies locations where food assistance benefits can be used, which is important for vulnerable population.</li>
 </ul>
 </section>
-<section id="openstreetmap-osm" class="level3">
-<h3 class="anchored" data-anchor-id="openstreetmap-osm">4. OpenStreetMap (OSM)</h3>
+<section id="openstreetmap-osm-points-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="openstreetmap-osm-points-of-interest">4. OpenStreetMap (OSM) Points of Interest</h3>
 <ul>
 <li><strong>Description:</strong> Geospatial data on points of interest.</li>
 <li><strong>Filtering:</strong> Extracted nodes/ways tagged as <code>supermarket</code>, <code>grocery</code>, or <code>convenience</code>.</li>
+<li><strong>Use:</strong> Identifies locations where fresh food can be accessed.</li>
+</ul>
+</section>
+<section id="openstreetmap-osm-roads" class="level3">
+<h3 class="anchored" data-anchor-id="openstreetmap-osm-roads">5. OpenStreetMap (OSM) Roads</h3>
+<ul>
+<li><strong>Description:</strong> Geospatial data on roads</li>
+<li><strong>Filtering:</strong> Extracted driveways in Philadelphia</li>
 <li><strong>Use:</strong> Calculated precise walking and driving network distances from every 50m grid cell to the nearest food source.</li>
 </ul>
 

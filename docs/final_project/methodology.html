@@ -169,7 +169,6 @@ window.Quarto = {
   <ul>
   <li><a href="#spatial-analysis" id="toc-spatial-analysis" class="nav-link active" data-scroll-target="#spatial-analysis">1. Spatial Analysis</a></li>
   <li><a href="#the-composite-index" id="toc-the-composite-index" class="nav-link" data-scroll-target="#the-composite-index">2. The Composite Index</a></li>
-  <li><a href="#categorization" id="toc-categorization" class="nav-link" data-scroll-target="#categorization">3. Categorization</a></li>
   </ul>
 </nav>
     </div>
@@ -204,7 +203,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-composite-index">2. The Composite Index</h3>
 <p>We developed a composite <strong>Food Desert Index (0-100)</strong> where higher scores indicate higher risk. The index is a weighted sum of four components:</p>
 <p><span class="math display">\[
-\text{Index} = 0.30(\text{Access}) + 0.35(\text{Economic}) + 0.25(\text{Transport}) + 0.10(\text{Demographic})
+\text{Index} = 0.25(\text{Access}) + 0.25(\text{Economic}) + 0.25(\text{Transport}) + 0.25(\text{Demographic})
 \]</span></p>
 <table class="caption-top table">
 <colgroup>
@@ -222,34 +221,27 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td><strong>Physical Accessibility</strong></td>
-<td>30%</td>
+<td>25%</td>
 <td>Distance to food stores, Distance to SNAP retailers</td>
 </tr>
 <tr class="even">
 <td><strong>Economic Vulnerability</strong></td>
-<td>35%</td>
-<td>Poverty rate, Unemployment rate, Median Income, SNAP usage</td>
+<td>25%</td>
+<td>Poverty rate, Unemployment rate, Median Household Income, SNAP usage</td>
 </tr>
 <tr class="odd">
 <td><strong>Transportation Barriers</strong></td>
 <td>25%</td>
-<td>Households without vehicles (<code>HUNVFlag</code>), Distance combined with lack of car</td>
+<td>Households without vehicles, Distance combined with lack of car</td>
 </tr>
 <tr class="even">
 <td><strong>Demographic Disparities</strong></td>
-<td>10%</td>
+<td>25%</td>
 <td>% Minority population (Black + Hispanic)</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="categorization" class="level3">
-<h3 class="anchored" data-anchor-id="categorization">3. Categorization</h3>
-<ul>
-<li><strong>High Risk:</strong> Index Score &gt; 50</li>
-<li><strong>Moderate Risk:</strong> Index Score 30 - 50</li>
-<li><strong>Low Risk:</strong> Index Score &lt; 30</li>
-</ul>
+<p>We consider each component equally important for identifying food desert.</p>
 
 
 </section>

@@ -22,9 +22,14 @@ This analysis integrates data from four primary sources to construct a multidime
 ### 3. SNAP Retailer Locator
 * **Description:** A historical dataset of authorized SNAP retailers.
 * **Filtering:** Filtered to include only active retailers in Philadelphia County as of 2024.
-* **Use:** Identifies locations where food assistance benefits can be used.
+* **Use:** Identifies locations where food assistance benefits can be used, which is important for vulnerable population.
 
-### 4. OpenStreetMap (OSM)
+### 4. OpenStreetMap (OSM) Points of Interest
 * **Description:** Geospatial data on points of interest.
 * **Filtering:** Extracted nodes/ways tagged as `supermarket`, `grocery`, or `convenience`.
+* **Use:** Identifies locations where fresh food can be accessed.
+
+### 5. OpenStreetMap (OSM) Roads
+* **Description:** Geospatial data on roads
+* **Filtering:** Extracted driveways in Philadelphia
 * **Use:** Calculated precise walking and driving network distances from every 50m grid cell to the nearest food source.
