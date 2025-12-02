@@ -81,6 +81,7 @@ fig2.show()
 # Risk Drivers
 The correlation between poverty and the Food Desert Index.
 
+
 ```{python}
 #| label: fig-scatter
 
