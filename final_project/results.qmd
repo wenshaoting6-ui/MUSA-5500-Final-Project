@@ -8,7 +8,7 @@ execute:
   echo: false
   warning: false
 ---
-### General Results: Location of SNAP retailers and Food Store
+## General Results: Location of SNAP retailers and Food Store
 The first map shows the spatial distribution and density of SNAP retailers and food stores. The number of SNAP retailers is far more than that of food stores, highly due to the incomplete data caused by OSM data. The density is high in center Philly and West Philly, and very low in north especially far north east of Philadelphia, implying an uneven spatial distribution of food access. 
 
 ```{python}
@@ -152,8 +152,9 @@ except Exception as e:
 
 
 
-# Risk Drivers
-The correlation between poverty and the Food Desert Index.
+## Risk Drivers
+Figure 2 below shows the correlation between four components that make up our index: economic vulnerability, minority score, accessibility score and transportation barrier. First, there is a positive relationship between economic vulnerability and minority score, as there are more minority groups within the census tract, the economic condition becomes more vulnerable. Moreover, more bigger and darker dots are clustered at high minority score area, implying minorities are more suffered by inconvenient transportation to food stores. 
+
 ```{python}
 #| label: fig-scatter
 
@@ -161,8 +162,8 @@ fig3 = px.scatter(
     tracts, 
     x="economic_vulnerability", 
     y="minority_score",
-    color="transportation_barrier",
-    size="accessibility_score",
+    color="accessibility_score",
+    size="transportation_barrier",
     hover_name="tract",
     labels={"economic_vulnerability": "Economic Vulnerability", "minority_score": "Minority Score"},
     template="plotly_white"
@@ -170,8 +171,10 @@ fig3 = px.scatter(
 fig3.show()
 ```
 
-### USDA Comparsion
-Comparing our continuous index (Left) vs. the USDA's binary definition (Right).
+## USDA Comparsion
+To further examine the accuracy of our approach, we use data from USDA to compare our results. Specifically, USDA data use classified census tract that at least 100 households do not own a vehicle and supermarket is at least 0.5 miles away as a flag. Although this data is used in our approach as well, and it is only updated to 2019, it still reflect food access in Philadelia to some extent. 
+
+As maps below show, the general pattern of both maps are similar, with a cluster of potential food desert on north, north east, and south west of Philadelphia. Interestingly, tracts on the far north of Philadelphia have a low risk score, while they were classified as potential food desert by USDA data. This is because the economic vulnerability score is very low in those tracts. As the USDA data is from 2019, this may due to recent gentification, increasing the economic level of the tract. 
 
 ::: {.panel-tabset}
 
@@ -201,7 +204,7 @@ fig.show()
 ```
 
 ### USDA Definition
-Areas classified as Low Income & Low Access by the USDA.
+The maps below displays census tracts with at least 100 households do not own a vehicle and supermarket is at least 0.5 miles away from the census tract classified by the USDA. 
 
 ```{python}
 #| label: fig-usda-map
