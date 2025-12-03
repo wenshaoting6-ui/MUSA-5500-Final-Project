@@ -8,7 +8,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: Final Project
+      - text: Analysis
         menu:
           - href: final_project/intro.qmd
             text: Introduction
@@ -20,6 +20,10 @@ website:
             text: Results
           - href: final_project/conclusion.qmd
             text: Conclusion
+      - text: Full Code
+        menu: 
+          - href: Code.ipynb
+            text: Full Code
 
 format:
   html:
