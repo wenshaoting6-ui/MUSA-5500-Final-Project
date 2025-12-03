@@ -223,3 +223,95 @@ fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig2.show()
 ```
 
+```{python}
+#| label: fig-food-desert-map
+#| title: "Food Desert Categories"
+
+
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+
+# Define a color for each category — in order
+category_colors = {
+    "Severe Food Desert": "#800026",   # dark red
+    "High Risk": "#BD0026",            # red
+    "Moderate Risk": "#E31A1C",        # orange-red
+    "Low Risk": "#FC4E2A",             # orange
+    "Good Access": "#31a354",          # green
+    "No Data": "#bdbdbd"               # gray
+}
+
+# Create a column with colors for plotting
+grid_clean["category_color"] = grid_clean["food_desert_category"].map(category_colors)
+
+fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+
+# Outline of the city
+philly_proj = philly.to_crs(grid_clean.crs)
+philly_proj.boundary.plot(ax=ax, linewidth=1, color="black")
+
+# Plot grid cells using custom color column
+grid_clean.plot(
+    color=grid_clean["category_color"],
+    ax=ax,
+    linewidth=0
+)
+
+# Create custom legend
+handles = [
+    plt.Line2D(
+        [0], [0],
+        marker='s', color=category_colors[c], label=c,
+        markersize=12, linestyle='None'
+    )
+    for c in category_colors
+]
+
+ax.legend(
+    handles=handles,
+    title="Food Desert Category",
+    loc="lower left",
+    frameon=True
+)
+
+ax.set_title("Food Desert Categories – Philadelphia Grid", fontsize=14)
+ax.set_axis_off()
+
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: fig-High-Risk 
+#| title: "High-Risk Food Desert Areas with Food Stores & SNAP Retailers"
+
+# Filter high-risk + severe cells
+high_risk = grid_clean[grid_clean["food_desert_category"].isin(["High Risk", "Severe Food Desert"])]
+
+# Make sure SNAP and food stores are in same CRS
+snap_proj = snapgdf.to_crs(grid_clean.crs)
+foodstore_proj = foodstore_proj.to_crs(grid_clean.crs)
+
+fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+
+# Base: all grid cells (light)
+grid_clean.plot(ax=ax, color="#eeeeee", linewidth=0, alpha=0.6)
+
+# High-risk cells
+high_risk.plot(
+    ax=ax,
+    column="food_desert_category",
+    categorical=True,
+    legend=True,
+    linewidth=0
+)
+
+# Food stores and SNAP retailers
+foodstore_proj.plot(ax=ax, markersize=5, alpha=0.7)
+snap_proj.plot(ax=ax, markersize=5, alpha=0.7)
+
+ax.set_title("High-Risk Food Desert Areas with Food Stores & SNAP Retailers", fontsize=14)
+ax.set_axis_off()
+plt.tight_layout()
+plt.show()
+```
