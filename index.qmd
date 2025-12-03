@@ -6,21 +6,15 @@ title: "MUSA 5050 Final Project"
 
 ## Beyond Proximity: A Multidimensional Risk Index
 
-{width=80%}
-
 ## Executive Summary
 
 Access to nutritious food is not just about miles; it is about mobility, money, and systemic equity. This project challenges the traditional binary definition of "food deserts" (Low Income + Low Access) by developing a continuous, 50-meter resolution Food Desert Index for Philadelphia.
 
 By integrating data from the USDA, Census Bureau, and OpenStreetMap, we identify "hidden" pockets of vulnerability that standard metrics miss—specifically neighborhoods where low vehicle ownership intersects with moderate distances to food sources.
 
-## The Challenge
+### The Question: Where are the hardest-to-reach areas for fresh food when accounting for economic and transportation barriers?
 
-Philadelphia has a poverty rate of over 20%, significantly higher than the national average. While many neighborhoods are geometrically close to corner stores or supermarkets, the quality of that access varies dramatically.
-
-# The Question: Where are the hardest-to-reach areas for fresh food when accounting for economic and transportation barriers?
-
-# The Approach: A weighted composite index analysis using a fine-grained 50m grid.
+### The Approach: A weighted composite index analysis using a fine-grained 50m grid.
 
 ## Key Indicators
 Our comprehensive index (0-100 score) is built on four pillars:

@@ -3,18 +3,8 @@ title: "Conclusion & Discussion"
 format: html
 ---
 
-### Key Findings
-1.  **Complexity:** Food insecurity in Philadelphia is not merely a geometric problem of distance. It is highly correlated with **vehicle access** and **poverty**.
-2.  **The Transportation Gap:** Areas with high "Transportation Barrier" scores (low vehicle ownership) showed significantly higher risk, even when physical distance to a store was moderate.
-3.  **Hidden Vulnerability:** Our index identified "Moderate Risk" transition zones that the binary USDA definition often misses. These areas need targeted policy intervention before they degrade into severe food deserts.
+This project used a muti-dimentional approach to estimate the potential food desert in Philadelphia. We considered food desert as a comprehensive issue with transportation, economy and race. Based on this, four compoments were used to calculated the final food desert risk index. South-west and North Philadelphia were identified as potential food desert. We also compared our results with USDA food atlas data. The pattern was similar except north-east of Philadelphia, as our method no longer identified them food desert because low economic vulnerability. 
 
-### Policy Implications
-City planners should focus not just on attracting new supermarkets (which can be difficult), but on:
-* **Improving Transit:** Better bus routes connecting "Moderate Risk" neighborhoods to existing grocery hubs.
-* **Mobile Markets:** Deploying mobile fresh food markets to high-transport-barrier zones.
-* **SNAP Expansion:** Encouraging more local corner stores in high-risk zones to accept SNAP benefits.
+However, there are several limitation to the study, first, the OSM POI data is incomplete. To compensate, our index highly weighted SNAP retailer data (70%). Moreover, the network analysis only utilized the driving network topology. While this accounts for physical road connectivity, it does not capture the specific challenges of pedestrians (e.g., sidewalk availability, safety) or public transit users (e.g., bus frequency, transfers). Especially in Philadelphia, a significant portion of the high-risk population relies on non-automotive transport, a driving-based metric may underestimate the true time-cost of accessing food.
 
-### Future Work
-Future iterations of this model could incorporate:
-* **Food Price Data:** Scraping real-time pricing to measure economic accessibility more precisely.
-* **Transit Times:** Using GTFS data to calculate public transit travel times rather than just driving/walking distance.
+Future research could address these those issues by a more comprehensive method. For example, not only food access, but also health food access should be considered in the model. A "Healthy Food Availability Index" (HFAI) to weight stores based on the actual provision of fresh fruits and vegetables rather than treating all SNAP retailers equally could be used in future model. Moreover, a muti-modal network analysis accounting both walk and public transportation would better represent the experience of car-less households
