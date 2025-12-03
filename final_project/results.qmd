@@ -150,6 +150,7 @@ except Exception as e:
     print("Error: Could not load data. Ensure 'outputs/tract_summary.geojson' exists.")
 ```
 
+![Final Result]("output.png")
 
 
 ## Risk Drivers
