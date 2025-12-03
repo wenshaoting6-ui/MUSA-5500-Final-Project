@@ -1,0 +1,20 @@
+---
+title: "Conclusion & Discussion"
+format: html
+---
+
+### Key Findings
+1.  **Complexity:** Food insecurity in Philadelphia is not merely a geometric problem of distance. It is highly correlated with **vehicle access** and **poverty**.
+2.  **The Transportation Gap:** Areas with high "Transportation Barrier" scores (low vehicle ownership) showed significantly higher risk, even when physical distance to a store was moderate.
+3.  **Hidden Vulnerability:** Our index identified "Moderate Risk" transition zones that the binary USDA definition often misses. These areas need targeted policy intervention before they degrade into severe food deserts.
+
+### Policy Implications
+City planners should focus not just on attracting new supermarkets (which can be difficult), but on:
+* **Improving Transit:** Better bus routes connecting "Moderate Risk" neighborhoods to existing grocery hubs.
+* **Mobile Markets:** Deploying mobile fresh food markets to high-transport-barrier zones.
+* **SNAP Expansion:** Encouraging more local corner stores in high-risk zones to accept SNAP benefits.
+
+### Future Work
+Future iterations of this model could incorporate:
+* **Food Price Data:** Scraping real-time pricing to measure economic accessibility more precisely.
+* **Transit Times:** Using GTFS data to calculate public transit travel times rather than just driving/walking distance.

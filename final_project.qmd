@@ -1,0 +1,243 @@
+---
+title: "Philadelphia Food Desert Analysis"
+author: "Tim Wen"
+format: 
+  html:
+    page-layout: full
+    toc: true
+    code-fold: true
+    theme: cosmo
+execute:
+  echo: false
+  warning: false
+---
+
+```{python}
+
+#| label: setup
+
+import geopandas as gpd
+
+import pandas as pd
+
+import plotly.express as px
+
+import plotly.graph_objects as go
+
+
+
+# 1. Load the data prepared in the Jupyter Notebook
+
+tracts = gpd.read_file("outputs/tract_summary.geojson")
+
+# 2. Ensure CRS is WGS84 (Latitude/Longitude) for web plotting
+
+if tracts.crs != 'EPSG:4326':
+
+    tracts = tracts.to_crs(epsg=4326)
+```
+
+Introduction
+
+Access to nutritious and affordable food is a fundamental determinant of public health. This project analyzes the food security landscape in Philadelphia, moving beyond simple proximity measures to a comprehensive Food Desert Index.
+
+Unlike traditional binary definitions, this analysis utilizes a 50m resolution grid to calculate a composite risk score (0-100) that integrates:
+
+Physical Accessibility (30%): Network distance to nearest supermarket and SNAP retailer.
+
+Economic Vulnerability (35%): Poverty rate, SNAP participation, Unemployment, and Income.
+
+Transportation Barriers (25%): Households without vehicles combined with distance to food.
+
+Demographic Disparities (10%): Concentration of minority populations, reflecting systemic barriers.
+
+Methodology
+
+We calculated a weighted composite index based on the following formula:
+
+$$\text{Index} = 0.30(\text{Access}) + 0.35(\text{Economic}) + 0.25(\text{Transport}) + 0.10(\text{Demographic})$$
+
+Data sources include the USDA Food Access Research Atlas, Census ACS (2023), SNAP Retailer Locator, and OpenStreetMap.
+
+Results Dashboard
+
+Food Desert Index Map
+
+The interactive map below shows the Food Desert Index aggregated to the Census Tract level.
+
+
+
+<span style="color: #800026; font-weight: bold;">Dark Red</span> indicates High Risk (poor access + high vulnerability).
+
+<span style="color: #FFEDA0; font-weight: bold;">Light Yellow</span> indicates Good Access.
+
+
+
+```{python}
+
+#| label: fig-index-map
+
+#| title: "Food Desert Index by Census Tract"
+
+
+
+fig = px.choropleth_mapbox(
+
+    tracts,
+
+    geojson=tracts.geometry,
+
+    locations=tracts.index,
+
+    color="food_desert_index",
+
+    color_continuous_scale="RdYlGn_r", # Reversed: Red is bad (High Index), Green is good (Low Index)
+
+    range_color=(20, 65),              # Set range based on your data distribution (approx 15-65)
+
+    mapbox_style="carto-positron",
+
+    zoom=10,
+
+    center = {"lat": 39.9526, "lon": -75.1652},
+
+    opacity=0.7,
+
+    labels={'food_desert_index': 'Risk Score (0-100)'},
+
+    hover_data={
+
+        "tract": True,
+
+        "poverty_rate": ":.1f",
+
+        "accessibility_score": ":.2f",
+
+        "food_desert_index": ":.1f"
+
+    }
+
+)
+
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+fig.show()
+```
+
+Comparison: Index vs. USDA Definition
+
+::: {.panel-tabset}
+
+USDA Definition Comparison
+
+This map highlights areas classified as "Food Deserts" under the USDA definition (Low Income & Low Access). Compare this binary classification with the continuous risk gradient in the main map.
+
+```{python}
+
+#| label: fig-usda-map
+
+#| title: "USDA Food Deserts"
+
+
+
+# Create a readable label for the legend
+
+tracts['usda_label'] = tracts['usda_food_desert'].map({1: 'USDA Food Desert', 0: 'Not Food Desert'})
+
+
+
+fig2 = px.choropleth_map(
+
+    tracts,
+
+    geojson=tracts.geometry,
+
+    locations=tracts.index,
+
+    color="usda_label",
+
+    color_discrete_map={'USDA Food Desert': '#FF4136', 'Not Food Desert': '#DDDDDD'},
+
+    map_style="carto-positron",
+
+    zoom=10,
+
+    center = {"lat": 39.9526, "lon": -75.1652},
+
+    opacity=0.6,
+
+    labels={'usda_label': 'Status'}
+
+)
+
+fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+fig2.show()
+```
+
+Risk Drivers
+
+What drives the risk in the most vulnerable neighborhoods?
+
+```{python}
+
+#| label: fig-correlation
+
+
+
+# Scatter plot: Poverty vs Index, sized by Accessibility
+
+fig3 = px.scatter(
+
+    tracts, 
+
+    x="poverty_rate", 
+
+    y="food_desert_index",
+
+    color="transportation_barrier",
+
+    size="accessibility_score",
+
+    hover_name="tract",
+
+    labels={
+
+        "poverty_rate": "Poverty Rate (%)",
+
+        "food_desert_index": "Food Desert Index",
+
+        "transportation_barrier": "Transport Barrier"
+
+    },
+
+    title="Poverty Rate vs. Food Desert Index",
+
+    template="plotly_white"
+
+)
+
+fig3.show()
+```
+:::
+
+Conclusion
+
+The analysis reveals that food insecurity in Philadelphia is not merely a geometric problem of distance to stores, but a complex intersection of economic and transportation barriers.
+
+High Risk Concentrations: The most severe food deserts are concentrated in North and West Philadelphia, where high poverty rates compound the effects of physical distance.
+
+Transportation is Key: The scatter plot demonstrates that areas with high Transportation Barrier scores (low vehicle ownership) consistently show higher overall risk indices.
+
+USDA vs. Comprehensive Index: The comprehensive index identifies several "Moderate Risk" transition zones that the binary USDA definition misses. These areas (yellow/orange in the main map) represent communities that are technically "accessible" but practically "vulnerable" due to economic factors.
+
+References
+
+USDA Food Access Research Atlas
+
+Philadelphia Open Data (City Limits)
+
+Census Bureau ACS 5-Year Estimates (2023)
+
+OpenStreetMap (Retailer Locations)
+

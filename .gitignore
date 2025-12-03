@@ -2,3 +2,5 @@
 outputs/philly_food_desert_grid.geojson
 outputs/*.geojson
 outputs/*.html
+/.quarto/
+**/*.quarto_ipynb
