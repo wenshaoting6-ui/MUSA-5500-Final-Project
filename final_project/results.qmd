@@ -150,8 +150,9 @@ except Exception as e:
     print("Error: Could not load data. Ensure 'outputs/tract_summary.geojson' exists.")
 ```
 
-![Final Result]("output.png")
-
+## Final Result
+The map below displays the final Food Desert Index. Different from food access density map, West and North Philadelphia had higher risk score. While far north east of Philadelphia, with extreme low economic vulnerability and transportation barrier, have the ability to either order food online or drive to buy fresh food. This shows the advantage of our approach, as we analyze and identify from muti-perspectives.
+![Final Result](../output.png)
 
 ## Risk Drivers
 Figure 2 below shows the correlation between four components that make up our index: economic vulnerability, minority score, accessibility score and transportation barrier. First, there is a positive relationship between economic vulnerability and minority score, as there are more minority groups within the census tract, the economic condition becomes more vulnerable. Moreover, more bigger and darker dots are clustered at high minority score area, implying minorities are more suffered by inconvenient transportation to food stores. 
@@ -179,8 +180,7 @@ As maps below show, the general pattern of both maps are similar, with a cluster
 
 ::: {.panel-tabset}
 
-### Interactive Food Desert Map
-The map below displays the final Food Desert Index. Different from food access density map, West and North Philadelphia had higher risk score. While far north east of Philadelphia, with extreme low economic vulnerability and transportation barrier, have the ability to either order food online or drive to buy fresh food. This shows the advantage of our approach, as we analyze and identify from muti-perspectives. 
+### Interactive Food Desert Map 
 <span style="color: #800026; font-weight: bold;">Dark Red</span> areas indicate High Risk.
 
 ```{python}
