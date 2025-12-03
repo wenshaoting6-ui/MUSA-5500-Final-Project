@@ -150,6 +150,31 @@ except Exception as e:
     print("Error: Could not load data. Ensure 'outputs/tract_summary.geojson' exists.")
 ```
 
+
+
+# Risk Drivers
+The correlation between poverty and the Food Desert Index.
+```{python}
+#| label: fig-scatter
+
+fig3 = px.scatter(
+    tracts, 
+    x="economic_vulnerability", 
+    y="minority_score",
+    color="transportation_barrier",
+    size="accessibility_score",
+    hover_name="tract",
+    labels={"economic_vulnerability": "Economic Vulnerability", "minority_score": "Minority Score"},
+    template="plotly_white"
+)
+fig3.show()
+```
+
+### USDA Comparsion
+Comparing our continuous index (Left) vs. the USDA's binary definition (Right).
+
+::: {.panel-tabset}
+
 ### Interactive Food Desert Map
 The map below displays the final Food Desert Index. Different from food access density map, West and North Philadelphia had higher risk score. While far north east of Philadelphia, with extreme low economic vulnerability and transportation barrier, have the ability to either order food online or drive to buy fresh food. This shows the advantage of our approach, as we analyze and identify from muti-perspectives. 
 <span style="color: #800026; font-weight: bold;">Dark Red</span> areas indicate High Risk.
@@ -175,18 +200,13 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 ```
 
-### USDA Comparsion
-Comparing our continuous index (Left) vs. the USDA's binary definition (Right).
-
-::: {.panel-tabset}
-
-# USDA Definition
+### USDA Definition
 Areas classified as Low Income & Low Access by the USDA.
 
 ```{python}
 #| label: fig-usda-map
 
-tracts['usda_label'] = tracts['usda_food_desert'].map({1: 'Food Desert', 0: 'Not Food Desert'})
+tracts['usda_label'] = tracts['HUNVFlag'].map({1: 'Food Desert', 0: 'Not Food Desert'})
 
 fig2 = px.choropleth_mapbox(
     tracts,
@@ -201,25 +221,5 @@ fig2 = px.choropleth_mapbox(
 )
 fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig2.show()
-```
-
-# Risk Drivers
-The correlation between poverty and the Food Desert Index.
-
-
-```{python}
-#| label: fig-scatter
-
-fig3 = px.scatter(
-    tracts, 
-    x="poverty_rate", 
-    y="food_desert_index",
-    color="transportation_barrier",
-    size="accessibility_score",
-    hover_name="tract",
-    labels={"poverty_rate": "Poverty Rate (%)", "food_desert_index": "Risk Index"},
-    template="plotly_white"
-)
-fig3.show()
 ```
 
