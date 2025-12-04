@@ -34,3 +34,5 @@ $$Where HUNV Flag indicates tracts with low vehicle access >0.5 miles from a sup
 $$\text{Min} = \text{Percent Black} + \text{Percent Hispanic}$$
 
 We consider each component equally important for identifying food desert.
+
+![Process Flowmap](../flowmap.png)
