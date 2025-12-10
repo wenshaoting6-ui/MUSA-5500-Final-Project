@@ -3,7 +3,7 @@ title: "Methodology"
 format: html
 ---
 
-To capture the food access more accurately in Philadelphia, we developed a multi-dimensional Food Desert Index. Specifically, we created a **50-meter resolution grid** analysis to increase the resolution of the results rather than using census tract as the spatial scale to account for intra-neighborhood spatial variations
+To capture the food access more accurately in Philadelphia, we developed a multi-dimensional Food Desert Index. Specifically, we created a **50-meter resolution grid** analysis. This decision was made to increase the resolution of the results and specifically to account for intra-neighborhood spatial variations, which are often masked by larger census boundaries.
 
 ### 1. Spatial Analysis
 We created a 50m x 50m vector grid covering the entire city of Philadelphia (approx. 1.5 million cells). We calculate the centroid of each cell for the orign point for network analysis
@@ -14,7 +14,7 @@ This project used OpenStreetMap street network from osmnx. Specifically, the tra
 Then we spatial joined the census data and USDA data into these grids
 
 ### 3. The Composite Index
-We developed a composite **Food Desert Index (0-100)** where higher scores indicate higher risk. The index is a weighted sum of four components:
+We developed a composite **Food Desert Index (0-100)** where higher scores indicate higher risk. The index is a weighted sum of four components. Due to the study’s aim to employ a comprehensive, multi-perspectival framework for risk identification, we consider these four components to be of equally critical importance in mapping Philadelphia’s food desert risk landscape. A community’s  risk level is the integrated result of the interaction of these four dimensions, and a significant deficiency in ant one dimension is sufficient to place the community at high risk.
 
 $$
 \text{Index} = 0.25(\text{Access}) + 0.25(\text{Economic}) + 0.25(\text{Transport}) + 0.25(\text{Demographic})

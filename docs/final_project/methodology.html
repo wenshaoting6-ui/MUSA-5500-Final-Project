@@ -206,7 +206,7 @@ window.Quarto = {
 </header>
 
 
-<p>To capture the food access more accurately in Philadelphia, we developed a multi-dimensional Food Desert Index. Specifically, we created a <strong>50-meter resolution grid</strong> analysis to increase the resolution of the results rather than using census tract as the spatial scale to account for intra-neighborhood spatial variations</p>
+<p>To capture the food access more accurately in Philadelphia, we developed a multi-dimensional Food Desert Index. Specifically, we created a <strong>50-meter resolution grid</strong> analysis. This decision was made to increase the resolution of the results and specifically to account for intra-neighborhood spatial variations, which are often masked by larger census boundaries.</p>
 <section id="spatial-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-analysis">1. Spatial Analysis</h3>
 <p>We created a 50m x 50m vector grid covering the entire city of Philadelphia (approx. 1.5 million cells). We calculate the centroid of each cell for the orign point for network analysis</p>
@@ -218,7 +218,7 @@ window.Quarto = {
 </section>
 <section id="the-composite-index" class="level3">
 <h3 class="anchored" data-anchor-id="the-composite-index">3. The Composite Index</h3>
-<p>We developed a composite <strong>Food Desert Index (0-100)</strong> where higher scores indicate higher risk. The index is a weighted sum of four components:</p>
+<p>We developed a composite <strong>Food Desert Index (0-100)</strong> where higher scores indicate higher risk. The index is a weighted sum of four components. Due to the study’s aim to employ a comprehensive, multi-perspectival framework for risk identification, we consider these four components to be of equally critical importance in mapping Philadelphia’s food desert risk landscape. A community’s risk level is the integrated result of the interaction of these four dimensions, and a significant deficiency in ant one dimension is sufficient to place the community at high risk.</p>
 <p><span class="math display">\[
 \text{Index} = 0.25(\text{Access}) + 0.25(\text{Economic}) + 0.25(\text{Transport}) + 0.25(\text{Demographic})
 \]</span></p>

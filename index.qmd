@@ -18,7 +18,7 @@ By integrating data from the USDA, Census Bureau, and OpenStreetMap, we identify
 
 ## Key Indicators
 Our comprehensive index (0-100 score) is built on four pillars:
-1. Physical Accessibility (30%): Network distance to fresh food.
-2. Economic Vulnerability (35%): Poverty, unemployment, and income.
+1. Physical Accessibility (25%): Network distance to fresh food.
+2. Economic Vulnerability (25%): Poverty, unemployment, and income.
 3. Transportation Barriers (25%): Vehicle ownership and transit reliance.
-4. Demographic Disparities (10%): Systemic racial and ethnic inequities.
+4. Demographic Disparities (25%): Systemic racial and ethnic inequities.
